@@ -1,0 +1,34 @@
+{
+  "name": "page-objects-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reader.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "commander": "^2.11.0",
+    "jsdom": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.24",
+    "jsdom": "11.1.0",
+    "jsdom-global": "3.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "jimmy": "bin/jimmy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cunhabruno/page-objects-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cunhabruno/page-objects-generator/issues"
+  },
+  "homepage": "https://github.com/cunhabruno/page-objects-generator#readme"
+}
