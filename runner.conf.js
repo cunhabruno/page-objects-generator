@@ -2,6 +2,6 @@
 
 module.exports = {
     pageObjectsFolderPath: './test.js',
-    filesToMap: ['', ''],
-    locatorsToMap: ['id', 'data-etoe']
+    filesToMap: ['test', 'bin/jimmy'],
+    locatorsToMap: ['id', 'data-etoe', 'name', 'class']
 };

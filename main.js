@@ -22,8 +22,10 @@ if (typeof configFile === 'undefined') {
     program.outputHelp();
 } else {
     configFileParser.setConfigFileContent(configFile);
-    DomReaderFuncs.getAttributeArray(configFileParser, './test/index.html').then(function (elms) {
-        fileMgmt.createFileAndWrite('./', 'tet.js', writer.getSeleniumJsString('pagename', elms));
+    configFileParser.getFilesToMap().forEach(function(item) {
+        DomReaderFuncs.getAttributeArray(configFileParser.getLocatorsToMap(), item).then(function (elms) {
+            fileMgmt.createFileAndWrite('test/', 'tet.js', writer.getSeleniumJsString('pagename', elms));
+        });
     });
 }
 
