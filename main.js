@@ -1,13 +1,13 @@
 //jimmy folder or file where obj are saved
 //jimmy test/index.html id data-etoe
 'use strict';
-var DomReaderFuncs = require('./reder-funcs.js');
-var writer = require('./page-objects.creator.js');
-var fileMgmt = require('./file-management');
-var fs = require('fs');
-var configFileParser = require('./config-file-parser.js');
+let DomReaderFuncs = require('./reder-funcs.js');
+let writer = require('./page-objects.creator.js');
+let fileMgmt = require('./file-management');
+let configFileParser = require('./config-file-parser.js');
+const path = require('path');
 const program = require('commander');
-var configFile;
+let configFile;
 program
     .version('0.0.1')
     .arguments('<filePath>')
@@ -24,7 +24,11 @@ if (typeof configFile === 'undefined') {
     configFileParser.setConfigFileContent(configFile);
     configFileParser.getFilesToMap().forEach(function(item) {
         DomReaderFuncs.getAttributeArray(configFileParser.getLocatorsToMap(), item).then(function (elms) {
-            fileMgmt.createFileAndWrite('test/', 'tet.js', writer.getSeleniumJsString('pagename', elms));
+            if(elms.length > 0){
+                fileMgmt.createFileAndWrite(configFileParser.getPageObjectsFolder(), path.basename(item) + '-objects.js', writer.getSeleniumJsString(elms));
+            }else {
+                console.log('No Elements found on file ' + item);
+            }
         });
     });
 }

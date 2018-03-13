@@ -6,14 +6,12 @@ module.exports = {
     setConfigFileContent: function (configFilePath) {
         configFileObj = require(path.resolve(configFilePath));
     },
-    getConfigFileFilePath() {
-        return (configFileObj.pageObjectsFolderPath);
-    },
-
     getLocatorsToMap() {
         return (configFileObj.locatorsToMap);
     },
-
+    getPageObjectsFolder() {
+        return (configFileObj.pageObjectsFolderPath);
+    },
     getFilesToMap() {
         let stats = '';
         let filesArray = [];
@@ -21,7 +19,7 @@ module.exports = {
             stats = fs.statSync(filePath);
             if(stats.isDirectory()) {
                 fs.readdirSync(filePath).forEach(function(file) {
-                    filesArray.push(filePath + '/' + file);
+                    filesArray.push(path.join(filePath, file));
                 });
             } else if(stats.isFile()) {
                 filesArray.push(filePath);

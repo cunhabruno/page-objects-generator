@@ -2,15 +2,14 @@
 let fs = require('fs');
 var beautify = require('js-beautify').js_beautify;
 module.exports = {
-    getSeleniumJsString: function (strPageName, objectsHash) {
-        console.log(objectsHash);
+    getSeleniumJsString: function (objectsHash) {
+        //console.log(objectsHash);
         let fileMap = '';
         for (let i = 0; i < objectsHash.length; i++) {
             fileMap += '\n\'' + objectsHash[i].varName + '\' : webDriver.By.' + this.parseAttributeNameAndValue(objectsHash[i].attributeName, objectsHash[i].value);
         }
         //Remove last comma
         fileMap = fileMap.replace(/,([^,]*)$/,'');
-        let fileName = strPageName + '-objects.js';
         let baseFile =
             '\'use strict\';\n' +
             'var webDriver = require(\'selenium-webdriver\');\n' +
