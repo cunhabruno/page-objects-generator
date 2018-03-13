@@ -19,7 +19,10 @@ module.exports = {
             stats = fs.statSync(filePath);
             if(stats.isDirectory()) {
                 fs.readdirSync(filePath).forEach(function(file) {
-                    filesArray.push(path.join(filePath, file));
+                    stats = fs.statSync(path.join(filePath, file));
+                    if(stats.isFile()){
+                        filesArray.push(path.join(filePath, file));
+                    }
                 });
             } else if(stats.isFile()) {
                 filesArray.push(filePath);

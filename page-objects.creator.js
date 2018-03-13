@@ -1,6 +1,5 @@
 "use strict";
-let fs = require('fs');
-var beautify = require('js-beautify').js_beautify;
+let beautify = require('js-beautify').js_beautify;
 module.exports = {
     getSeleniumJsString: function (objectsHash) {
         //console.log(objectsHash);

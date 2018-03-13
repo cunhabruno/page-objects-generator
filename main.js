@@ -23,13 +23,19 @@ if (typeof configFile === 'undefined') {
 } else {
     configFileParser.setConfigFileContent(configFile);
     configFileParser.getFilesToMap().forEach(function(item) {
-        DomReaderFuncs.getAttributeArray(configFileParser.getLocatorsToMap(), item).then(function (elms) {
+        let elms = DomReaderFuncs.getAttributeArray(configFileParser.getLocatorsToMap(), item);
+        if(elms.length > 0){
+            fileMgmt.createFileAndWrite(configFileParser.getPageObjectsFolder(), path.basename(item) + '-objects.js', writer.getSeleniumJsString(elms));
+        }else {
+            console.log('No Elements found on file ' + item);
+        }
+        /*DomReaderFuncs.getAttributeArray(configFileParser.getLocatorsToMap(), item).then(function (elms) {
             if(elms.length > 0){
                 fileMgmt.createFileAndWrite(configFileParser.getPageObjectsFolder(), path.basename(item) + '-objects.js', writer.getSeleniumJsString(elms));
             }else {
                 console.log('No Elements found on file ' + item);
             }
-        });
+        });*/
     });
 }
 
