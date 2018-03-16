@@ -7,6 +7,9 @@ module.exports = {
         for (let i = 0; i < objectsHash.length; i++) {
             fileMap += '\n\'' + objectsHash[i].varName + '\' : webDriver.By.' + this.parseAttributeNameAndValue(objectsHash[i].attributeName, objectsHash[i].value);
         }
+
+        let fileMapArr = fileMap.split('\n');
+        fileMap = this.removeDuplicates(fileMapArr);
         //Remove last comma
         fileMap = fileMap.replace(/,([^,]*)$/,'');
         let baseFile =
@@ -27,5 +30,15 @@ module.exports = {
         } else {
             return 'css' + '(\'[' + attributeName + '="' + attributeValue + '"]\'),';
         }
+    },
+
+    removeDuplicates: function(inputArray) {
+        let result = '';
+        inputArray.forEach(function(item) {
+            if(result.indexOf(item.replace(/,([^,]*)$/,'')) < 0) {
+                result += item;
+            }
+        });
+        return result;
     }
 };
